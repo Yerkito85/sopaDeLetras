@@ -36,13 +36,14 @@ public class SopaController {
 	final static Logger logger = LoggerFactory.getLogger(SopaController.class);
 	
 	ArrayList<Sopa> sopas;
+	static final String version = "1.1";
 	@Autowired (required = true)
 	private SopaService sopaService;
 
 	@PostMapping(path="/alphabetSoup", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<Object> crearSopaDeLetras(@RequestBody ValoresSopa valoresSopa) {
 		try {
-			logger.info(valoresSopa.toString());
+			logger.info(valoresSopa.toString() + version);
 			
 			sopaService.validarSopa(valoresSopa);
 			
