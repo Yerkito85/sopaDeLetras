@@ -30,7 +30,7 @@ import com.sitrak.sopa.util.ConstantesUtil;
 import com.sitrak.sopa.util.SopaUtil;
 
 @RestController
-@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path="/alphabetSoup", produces = MediaType.APPLICATION_JSON_VALUE)
 public class SopaController {
 	
 	final static Logger logger = LoggerFactory.getLogger(SopaController.class);
@@ -39,7 +39,7 @@ public class SopaController {
 	@Autowired (required = true)
 	private SopaService sopaService;
 
-	@PostMapping(path =  "/alphabetSoup", consumes = {MediaType.APPLICATION_JSON_VALUE})
+	@PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<Object> crearSopaDeLetras(@RequestBody ValoresSopa valoresSopa) {
 		try {
 			logger.info(valoresSopa.toString());
@@ -109,7 +109,7 @@ public class SopaController {
 		}
 	}
 	
-	@PutMapping(path = "/alphabetSoup/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> buscarPalabra(@PathVariable(value = "id", required = true) String id, @RequestBody(required = true) Coordenadas coordenadas) {
 		try {
 			for (Sopa sopa :  sopas) {
@@ -126,7 +126,7 @@ public class SopaController {
 			return ResponseEntity.badRequest().body(new RespuestaNok(ConstantesUtil.MSG_ERROR_BUSQUEDA_SOPA));
 			
 		} catch (Exception e) {
-			return ResponseEntity.badRequest().body(new RespuestaNok(ConstantesUtil.MSG_ERROR_BUSQUEDA_SOPA));
+			return ResponseEntity.badRequest().body(new RespuestaNok(ConstantesUtil.MSG_ERROR_BUSQUEDA_SOPA.replaceAll("@id", id)));
 		}				
 	}
 	
