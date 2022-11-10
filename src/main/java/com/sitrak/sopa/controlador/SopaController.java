@@ -30,7 +30,7 @@ import com.sitrak.sopa.util.ConstantesUtil;
 import com.sitrak.sopa.util.SopaUtil;
 
 @RestController
-@RequestMapping(path="/alphabetSoup", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 public class SopaController {
 	
 	final static Logger logger = LoggerFactory.getLogger(SopaController.class);
@@ -39,7 +39,7 @@ public class SopaController {
 	@Autowired (required = true)
 	private SopaService sopaService;
 
-	@PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE})
+	@PostMapping(path="/alphabetSoup", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<Object> crearSopaDeLetras(@RequestBody ValoresSopa valoresSopa) {
 		try {
 			logger.info(valoresSopa.toString());
@@ -64,21 +64,7 @@ public class SopaController {
 		}
 	}
 	
-	@GetMapping("/list")
-	public ResponseEntity<Respuesta> listar() {
-		
-		if (sopas == null || sopas.isEmpty()) {
-			RespuestaNok respuesta = new RespuestaNok("Sin sopas de letras disponible");
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(respuesta);
-		}
-		for (Sopa sopa :  sopas) {
-			logger.info(sopa.toString());			
-		}
-		Respuesta respuesta = new RespuestaOk(sopas.toString());
-		return ResponseEntity.ok(respuesta);
-	}
-	
-	@GetMapping(path = "/list/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/alphabetSoup/list/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> visualizarListaPalabras(@PathVariable("id") String id) {
 		try {
 			for (Sopa sopa :  sopas) {
@@ -94,7 +80,7 @@ public class SopaController {
 		}				
 	}
 	 
-	@GetMapping(path = "/view/{id}", produces = "text/plain")
+	@GetMapping(path = "/alphabetSoup/view/{id}", produces = "text/plain")
 	public ResponseEntity<Object> verSopa(@PathVariable("id") String id) {
 		try {
 			for (Sopa sopa :  sopas) {
@@ -109,7 +95,7 @@ public class SopaController {
 		}
 	}
 	
-	@PutMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(path = "/alphabetSoup/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> buscarPalabra(@PathVariable(value = "id", required = true) String id, @RequestBody(required = true) Coordenadas coordenadas) {
 		try {
 			for (Sopa sopa :  sopas) {
@@ -128,29 +114,5 @@ public class SopaController {
 		} catch (Exception e) {
 			return ResponseEntity.badRequest().body(new RespuestaNok(ConstantesUtil.MSG_ERROR_BUSQUEDA_SOPA.replaceAll("@id", id)));
 		}				
-	}
-	
-	@GetMapping(path = "/random/{desde}/{hasta}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> verSopa(@PathVariable(name = "desde",required = true) Integer desde, @PathVariable(name="hasta",required = true) Integer hasta) {
-		try {
-			Random numAleatorio = new Random();
-			for (int i = 0; i < 50; i++) {
-				//int posicion = (int) Math.floor(Math.random()*(hasta-1)+desde); //desde - hasta inclusive
-
-//				int posicion = (int) Math.random() * (hasta + desde)-1;
-//				logger.info("Opción: "+posicion);
-				
-				//int n = numAleatorio.nextInt((hasta-1)-desde+1) + desde; funciona perfecto
-				int n = numAleatorio.nextInt(hasta+1);
-				logger.info("Número: "+n);
-				
-				//int n = numAleatorio.nextInt(75-25+1) + 25;				// Numero entero entre 25 y 75
-				
-			}
-			return ResponseEntity.badRequest().body(new RespuestaNok("Sopa de Letras no encontrada"));
-		} catch (Exception e) {
-			return ResponseEntity.badRequest().body(new RespuestaNok("Sopa de Letras no encontrada"));
-		}
-	}
-	
+	}	
 }
