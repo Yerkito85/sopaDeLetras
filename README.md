@@ -6,7 +6,8 @@
 3. [Instalación](#Instalación)
 4. [Crear Imagen Docker](#Crear-Imagen-Docker)
 5. [Publicar Imagen Docker](#Publicar-Imagen-Docker)
-6. [Mejoras](#Mejoras)
+6. [Descargar Imagen Docker](#Descargar-Imagen-Docker)
+7. [Mejoras](#Mejoras)
 
 ## Información General
 
@@ -21,7 +22,7 @@ la SDL y un ultimo servicio para indicar las coordenadas de una palabra encontra
 * [GET] http://host/alphabetSoup/view/{id}
 * [PUT] http://host/alphabetSoup/{id}
  
-## Tecnologías 
+## Tecnologías
 
 * Java 1.8 update 351
 * Maven 3.8.6
@@ -100,9 +101,7 @@ la SDL y un ultimo servicio para indicar las coordenadas de una palabra encontra
 
 4.5 Por último ejecutar ***docker run --sopa01 sopa01:latest***  
 
-4.6 Descargar imagen desde  
-
-## Publicar Imagen Docker  
+## Publicar Imagen Docker
 
 5.1 Logearse con ***docker login***  
 
@@ -110,9 +109,11 @@ la SDL y un ultimo servicio para indicar las coordenadas de una palabra encontra
 
 5.3 Pasar TAG al Docker Hub con ***docker push yerkomendez/sopa01:latest***  
 
-5.4 Descargar Imagen con ***docker pull yerkomendez/sopa01***
+## Descargar Imagen Docker
 
-## Mejoras  
+* Descargar Imagen con ***docker pull yerkomendez/sopa01***
+
+## Mejoras
 
 * Mensaje de que completo la SDL (no era requerimiento)
 * Manejar tematicas
