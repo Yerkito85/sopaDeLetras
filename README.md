@@ -90,20 +90,29 @@ la SDL y un ultimo servicio para indicar las coordenadas de una palabra encontra
 ## Crear Imagen Docker
 
 4.1 Primero Instalaremos WSL (necesario) abriendo una consola ***Simbolo de sistema*** ejecutar ***wsl.exe --install*** y reiniciar equipo.
-> O en su defecto abrir PowerShell y ejecutar ***Enable-WindowsOptionalFeature -Online -FeatureName $("VirtualMachinePlatform", "Microsoft-Windows-Subsystem-Linux")*** y dar a la opción ***Y / yes*** y reiniciar equipo.
+> O en su defecto abrir PowerShell y ejecutar ***Enable-WindowsOptionalFeature -Online -FeatureName $("VirtualMachinePlatform", "Microsoft-Windows-Subsystem-Linux")*** y dar a la opción ***Y / yes*** y reiniciar equipo.  
+
 4.2 Descargar Docker Desktop desde [DOCKER](https://www.docker.com/products/docker-desktop/) y seguir los pasos de instalación.
-4.3 Ir a la raiz del proyecto /sopa y ejecutar vía consola ***docker build -t sopa01 .***
-4.4 Luego podremos ver la imagen construida ***sopa01*** con ***docker images***
-4.5 Por último ejecutar ***docker run --sopa01 sopa01:latest***
-4.6 Descargar imagen desde
 
-## Publicar Imagen Docker
+4.3 Ir a la raiz del proyecto /sopa y ejecutar vía consola ***docker build -t sopa01 .***  
 
-5.1 Logearse con ***docker login***
-5.2 Crear TAG con ***docker tag sopa01 yerkomendez/sopa01:latest***
-5.3 Pasar TAG al Docker Hub con ***docker push yerkomendez/sopa01:latest***
+4.4 Luego podremos ver la imagen construida ***sopa01*** con ***docker images***  
 
-## Mejoras
+4.5 Por último ejecutar ***docker run --sopa01 sopa01:latest***  
+
+4.6 Descargar imagen desde  
+
+## Publicar Imagen Docker  
+
+5.1 Logearse con ***docker login***  
+
+5.2 Crear TAG con ***docker tag sopa01 yerkomendez/sopa01:latest***  
+
+5.3 Pasar TAG al Docker Hub con ***docker push yerkomendez/sopa01:latest***  
+
+5.4 Descargar Imagen con ***docker pull yerkomendez/sopa01***
+
+## Mejoras  
 
 * Mensaje de que completo la SDL (no era requerimiento)
 * Manejar tematicas
